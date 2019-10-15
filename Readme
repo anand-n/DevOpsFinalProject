@@ -1,6 +1,5 @@
-
-AWS Servers
-  - Jenkins Master server,Puppetmaster
+AWS Servers, EC2 instance,t2.micro,t2.medium
+  - Jenkins Master server,Puppetmaster  
   - Testing Server
   - Production server
 '------------------------------------------------------------------------------------------
@@ -16,12 +15,14 @@ Source code - Github
   - Develop Branch - Testing code
   ----------------------------------------------------------------------------------------
 Jenkins Job
+Build Pipeline has been created for Build,Test and Deploy
+
  - Job1 :Build_Website - Source code is bild on jenkins and ready for testing [Code is copied to jenkins workspace]
  - Job2 :Testing Website - Test the built website
       - if code is pushed on Develop branch - Testing will be done on Testing server and it will not be pushed to production
       - if the testing is successfull - it will deploy on docker container
-Testing: Selenium script has created with maven build tool
-        - It runs in Headless mode [  chromiumbrowser,chromedriver on linux host
+Testing: Selenium script has created with maven build tool , pom.xxml - exported as .jar file to run on linux server [ test2.jar ]
+        - It runs in Headless mode [  chromiumbrowser,chromedriver on linux host]
         
       - if code is pushed on Master branch - tetsing will be done and next job will be trigerred
       - if the testing is successfull - it will run Push to production jenkins job
@@ -31,4 +32,17 @@ Testing: Selenium script has created with maven build tool
  - download docker container - apache [ which will install apache2 service on our container]
  - deploy our website on docker container and create docker image
  - push it to docker hub
+ 
+Code - Index.html,images folder
+pom.xml - used in selenium-maven project
+Dockerfile - Create docker container,deploy code on container, create docker image,push to docker hub
+      Artifacts\Production-BuildAction-ShellCommands
+      Artifacts\Testing-BuildAction-Shellcommands
+      
+ GitWebhook - To run automatic build when there is a change in code
+              Artifacts\     
+ Puppet configuration management tool - Install software on slave nodes/servers - Artifacts\ init.pp,site.pp,status.txt
+ test.jar - selenium maven code - used to run for testing - java -jar test.jar
+ test.sh - verifies the putput of Testing job and move to next job in pipeline based on the pass status of Testing job
+ jenkins Pipeline achieved : Artifacts\BuildPipeline
  
