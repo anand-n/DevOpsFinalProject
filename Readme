@@ -5,8 +5,6 @@ AWS Servers, EC2 instance,t2.micro,t2.medium
 '------------------------------------------------------------------------------------------
 Puppet:
 - Puppet Modules - init.pp - created to install required softwares on new servers
-- manifests site.pp 
-- status.txt
 example : Git,Docker,Java,maven
 '-----------------------------------------------------------------------------------------
 Source code - Github
@@ -45,4 +43,12 @@ Dockerfile - Create docker container,deploy code on container, create docker ima
  test.jar - selenium maven code - used to run for testing - java -jar test.jar
  test.sh - verifies the putput of Testing job and move to next job in pipeline based on the pass status of Testing job
  jenkins Pipeline achieved : Artifacts\BuildPipeline
+ Docker images are uploaded into Dockerhub :
+  https://cloud.docker.com/repository/docker/cgangadh/testingwebsite 
+  https://cloud.docker.com/repository/docker/cgangadh/pushtoproduction 
  
+ Outputscreenshot - artifacts
+  
+  
+  
+  
