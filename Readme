@@ -1,0 +1,34 @@
+
+AWS Servers
+  - Jenkins Master server,Puppetmaster
+  - Testing Server
+  - Production server
+'------------------------------------------------------------------------------------------
+Puppet:
+- Puppet Modules - init.pp - created to install required softwares on new servers
+- manifests site.pp 
+- status.txt
+example : Git,Docker,Java,maven
+'-----------------------------------------------------------------------------------------
+Source code - Github
+  - Followed Gitflow workflow approach
+  - Master Branch  - production code
+  - Develop Branch - Testing code
+  ----------------------------------------------------------------------------------------
+Jenkins Job
+ - Job1 :Build_Website - Source code is bild on jenkins and ready for testing [Code is copied to jenkins workspace]
+ - Job2 :Testing Website - Test the built website
+      - if code is pushed on Develop branch - Testing will be done on Testing server and it will not be pushed to production
+      - if the testing is successfull - it will deploy on docker container
+Testing: Selenium script has created with maven build tool
+        - It runs in Headless mode [  chromiumbrowser,chromedriver on linux host
+        
+      - if code is pushed on Master branch - tetsing will be done and next job will be trigerred
+      - if the testing is successfull - it will run Push to production jenkins job
+ - Job3 :Push To production - Website will be deployed on production server using docker container
+ '-----------------------------------------------------------------------------------------
+ Docker file:
+ - download docker container - apache [ which will install apache2 service on our container]
+ - deploy our website on docker container and create docker image
+ - push it to docker hub
+ 
